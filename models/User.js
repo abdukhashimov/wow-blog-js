@@ -51,23 +51,4 @@ const userSchema = new mongoose.Schema({
 });
 
 
-
-async function connectMongoBase(){
-    let db = await dbConnection()
-    return db.model('Users', userSchema)
-}
-
-async function createUser(firstname,lastname,email,password){
-    let db = await connectMongoBase()
-    return db.create({
-        firstname,
-        lastname,
-        email,
-        password
-    })
-}
-
-
-module.exports = {
-    createUser
-}
+module.exports = mongoose.model("users", userSchema)
