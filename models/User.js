@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
+const dbConnection = require('../storage/mongodb/mongo')
 
 const userSchema = new mongoose.Schema({
     _id: {
@@ -49,4 +50,24 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('User', userSchema);
+
+
+async function connectMongoBase(){
+    let db = await dbConnection()
+    return db.model('Users', userSchema)
+}
+
+async function createUser(firstname,lastname,email,password){
+    let db = await connectMongoBase()
+    return db.create({
+        firstname,
+        lastname,
+        email,
+        password
+    })
+}
+
+
+module.exports = {
+    createUser
+}
