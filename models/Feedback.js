@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 const Post = require('./Post');
+const { v4: uuidv4 } = require('uuid');
 
 const feedbackSchema = new mongoose.Schema({
+    _id: {
+        type: String,
+        default: uuidv4(),
+    },
     feedback: {
         type: String,
     },
