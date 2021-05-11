@@ -21,7 +21,6 @@ app.use(cookieParser())
 
 // Routes
 glob('**/*Route.js',{realpath:true} ,(err, files)=>{
-    console.log(files)
     files.forEach( (file)=>{
         let routeFile = require(file)
         app.use(routeFile.path,routeFile.router)

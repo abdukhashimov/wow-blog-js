@@ -19,7 +19,7 @@ let UserValidator = Joi.object({
         .required()
         .error(new Error('Password is incorrect. Please check it!'))
         .min(5)
-        .max(12)
+        .max(20)
 })
 
 
@@ -32,7 +32,7 @@ let UserUpdateValidator = Joi.object({
         .required()  
         .error(new Error('Password is incorrect. Please check it!'))
         .min(5)
-        .max(12)
+        .max(20)
 })
 
 module.exports = {
