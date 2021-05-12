@@ -2,6 +2,7 @@ const router = require('express').Router()
 const db = require('../models/User')
 const { generateHashPass } = require('../modules/bcrypt')
 const { UserValidator } = require('../validators/validate')
+
 router.post('/', async (req, res) => {
     try {
         let {
