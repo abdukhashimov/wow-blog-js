@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { createUser } = require('../dbmodels/Usermodel')
+const { createUser } = require('../modelsMethods/Usermodel')
 const { generateHashPass } = require('../modules/bcrypt')
 const { UserValidator } = require('../validators/validate')
 

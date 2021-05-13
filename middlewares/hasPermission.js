@@ -1,5 +1,5 @@
 const { verifyToken } = require("../modules/jwt")
-const { findUserByEmail } = require("../dbmodels/Usermodel")
+const { findUserByEmail } = require("../modelsMethods/Usermodel")
 
 function hasPermission(operation){
     return async (req,res,next) =>{

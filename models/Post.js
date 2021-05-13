@@ -8,9 +8,11 @@ const postSchema = new mongoose.Schema({
     },
     title: {
         type: String,
+        required:true
     },
     content: {
         type: String,
+        required:true
     },
     rating: {
         type: Number,
@@ -26,6 +28,7 @@ const postSchema = new mongoose.Schema({
     author: {
         type: String,
         ref: 'User',
+        required:true
     },
     category: [
         {

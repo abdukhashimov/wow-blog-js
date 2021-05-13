@@ -5,6 +5,7 @@ const UserAuth = require('../middlewares/UserAuth')
 const Joi = require('joi')
 const { createPost, editPost, specificPost, deletePost} = require('../modelsMethods/Postmodel')
 const { findUserByEmail } = require('../modelsMethods/Usermodel')
+const { v4: uuidv4 } = require('uuid');
 
 const postJoiSchema = Joi.object({
     title:Joi.string()
@@ -26,7 +27,7 @@ router.post('/', hasPermission('create'), async(req,res) => {
     try {
         let { title, content } = await postJoiSchema.validateAsync(req.body)
         let user = await findUserByEmail(req.user)
-        let post = await createPost(title,content,user._id)
+        let post = await createPost(uuidv4(),title,content,user._id)
         res.send('Your post created!')
     } catch (e) {
         res.send(e.message)
@@ -44,7 +45,6 @@ router.put('/:id', hasPermission('edit') ,async (req,res)=>{
         await editPost(isexistpost._id,title,content) 
         res.send('Your post successfully updated!')
     } catch (e) {
-        console.log(e)
         res.send(e.message)
     }
 })
@@ -53,7 +53,7 @@ router.put('/:id', hasPermission('edit') ,async (req,res)=>{
 router.delete('/:id', hasPermission('delete'), async (req, res)=>{
     try {
         if(!req.params?.id) throw new Error('Post id not found')
-        let deletepost = await deletePost(req.params.id)
+        let deletepost = await deletePost(req.params?.id)
         if(!deletepost) throw new Error('Post not found!')
         res.send('Your post successfully deleted!')
     } catch (e) {

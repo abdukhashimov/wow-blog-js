@@ -2,7 +2,9 @@ const router = require('express').Router()
 const { compareHashedPass } = require('../modules/bcrypt')
 const { UserUpdateValidator } = require('../validators/validate')
 const { generateToken } = require('../modules/jwt')
-const { findUserByEmail } = require('../dbmodels/Usermodel')
+const { findUserByEmail } = require('../modelsMethods/Usermodel')
+// const { findUserByEmail } = require('../middl')
+
 
 router.post('/', async (req,res)=>{
     try {

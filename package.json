@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "test":"jest",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
@@ -19,5 +20,11 @@
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "jest":{
+    "testEnvironment":"node"
   }
 }
